@@ -8,8 +8,8 @@
 
 > 题目按 LeetCode Hot100 题单顺序，从上到下排列
 
-- [1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)
-- [2. Group Anagrams（字母异位词分组）](hot100/2.%20Group%20Anagrams.md)
+- **[1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)**
+- **[2. Group Anagrams（字母异位词分组）](hot100/2.%20Group%20Anagrams.md)**
 
 ## 2. Java 刷题常用 API 📚 
 
@@ -27,14 +27,14 @@
 
 ### 2.2 工具类 🛠️ 
 
-- 🧰 Arrays
-- 🗃️ Collections
-- ➗ Math
+- 🧰 **Arrays**
+- 🗃️ **Collections**
+- ➗ **Math**
 
 ### 2.3 算法专题 🧠 
 
-- 🔀 排序与比较器
-- 🔍 二分查找
-- 👈👉 双指针 / 滑动窗口
-- 🔁 类型转换速查
-- ⚙️ 位运算
+- 🔀 **排序与比较器**
+- 🔍 **二分查找**
+- 👈👉 **双指针 / 滑动窗口**
+- 🔁 **类型转换速查**
+- ⚙️ **位运算**
