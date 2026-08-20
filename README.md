@@ -8,13 +8,13 @@
 
 - [1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)
 
-## 📚 刷题常用方法
+## 📚 Java 刷题常用 API
 
 ### 🧺 容器类
 
 - 📦 数组 Array
 - 📃 List（ArrayList / LinkedList）
-- 🗺️ [Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用方法/Map相关常用方法.md)
+- 🗺️ [Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用API/Map相关常用方法.md)
 - 🎯 Set（HashSet / LinkedHashSet / TreeSet）
 - 🥞 Stack（栈）
 - ↔️ Queue / Deque（队列与双端队列）
