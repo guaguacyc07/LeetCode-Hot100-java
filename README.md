@@ -6,7 +6,10 @@
 
 ### 1.1 LeetCode-Hot100 
 
+> 题目按 LeetCode Hot100 题单顺序，从上到下排列
+
 - [1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)
+- [2. Group Anagrams（字母异位词分组）](hot100/2.%20Group%20Anagrams.md)
 
 ## 2. Java 刷题常用 API 📚 
 
