@@ -1,40 +1,36 @@
-# LeetCode-Hot100-java
-记录力扣hot100刷题
+# ☕ LeetCode-Hot100-java
 
-## 题目
+记录力扣 Hot100 刷题 🚀
+
+## 📝 题目
 
 ### 1. LeetCode-Hot100
 
 - [1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)
 
+## 📚 刷题常用方法
 
+### 🧺 容器类
 
-## 刷题常用方法
+- 📦 数组 Array
+- 📃 List（ArrayList / LinkedList）
+- 🗺️ [Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用方法/Map相关常用方法.md)
+- 🎯 Set（HashSet / LinkedHashSet / TreeSet）
+- 🥞 Stack（栈）
+- ↔️ Queue / Deque（队列与双端队列）
+- ⛰️ PriorityQueue（优先队列 / 堆）
+- 🔤 String / StringBuilder
 
-> 对应文件夹 `java刷题常用方法/`，未生成的文件暂未加链接。
+### 🛠️ 工具类
 
-### 容器类
+- 🧰 Arrays
+- 🗃️ Collections
+- ➗ Math
 
-- 数组 Array
-- List（ArrayList / LinkedList）
-- [Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用方法/Map相关常用方法.md)
-- Set（HashSet / LinkedHashSet / TreeSet）
-- Stack（栈）
-- Queue / Deque（队列与双端队列）
-- PriorityQueue（优先队列 / 堆）
-- String / StringBuilder
+### 🧠 算法专题
 
-### 工具类
-
-- Arrays
-- Collections
-- Math
-
-### 算法专题
-
-- 排序与比较器
-- 二分查找
-- 双指针 / 滑动窗口
-- 类型转换速查
-- 位运算
-
+- 🔀 排序与比较器
+- 🔍 二分查找
+- 👈👉 双指针 / 滑动窗口
+- 🔁 类型转换速查
+- ⚙️ 位运算
