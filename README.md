@@ -1,10 +1,10 @@
-# ☕ LeetCode-Hot100-java
+# ☕ java-daily
 
-记录力扣 Hot100 刷题 🚀
+记录刷题 🚀
 
 ## 1. 题目📝 
 
-### 1.1 LeetCode-Hot100
+### 1.1 LeetCode-Hot100 
 
 - [1. Two Sum（两数之和）](hot100/1.%20Two%20Sum.md)
 
@@ -13,6 +13,7 @@
 ### 2.1 容器类 🧺 
 
 - 📦 数组 Array
+
 - 📃 List（ArrayList / LinkedList）
 - 🗺️ [Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用API/Map常用API.md)
 - 🎯 Set（HashSet / LinkedHashSet / TreeSet）
