@@ -15,7 +15,7 @@
 
 ### 2.1 容器类 🧺 
 
-- 📦 **数组 Array**
+- 📦 [**数组 Array**](java刷题常用API/数组常用API.md)
 
 - 📃 **List（ArrayList / LinkedList）**
 - 🗺️ **[Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用API/Map常用API.md)**
