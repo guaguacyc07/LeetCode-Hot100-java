@@ -26,30 +26,11 @@ Arrays.fill(f, 0, 5, 100);       // 只填 [0,5)，即下标 0~4
 
 > 注意 `Arrays.fill(f, from, to, val)` 的 `[from, to)` 是**左闭右开**：含 from，不含 to。
 
-## 二、增 / 删（数组定长，靠拷贝移动）
+## 二、增 / 删
 
-数组长度固定，**不能直接 add/remove**。真要手写增删才用 `System.arraycopy`（⚠️ 刷题里很少手写，通常直接转 `ArrayList`，这里了解签名即可），5 个参数：
+数组长度固定，**不能直接 add/remove**。
 
-```
-System.arraycopy(源数组, 源起始下标, 目标数组, 目标起始下标, 拷贝个数)
-```
-
-```java
-int[] a = {1, 2, 3, 4, 5};
-
-// 删除下标 index 的元素：把后面的元素整体前移一位
-int index = 2;
-System.arraycopy(a, index + 1, a, index, a.length - index - 1);
-// 结果 {1,2,4,5,5}，末尾会多一个“残留”，长度不变
-
-// 在 index 位置插入 val：需要新建一个更长的数组
-int[] b = new int[a.length + 1];
-System.arraycopy(a, 0, b, 0, index);           // 复制 index 之前的部分
-b[index] = 99;                                  // 插入新值
-System.arraycopy(a, index, b, index + 1, a.length - index); // 复制 index 及之后
-```
-
-> 刷题结论：**需要频繁增删时直接用 `ArrayList`**，数组适合"长度确定、只按下标访问"的场景。
+> 刷题结论：需要增删时直接用 `ArrayList`（见 List 笔记），数组适合"长度确定、只按下标访问"的场景。
 
 ## 三、查
 
@@ -184,7 +165,6 @@ int[] part = Arrays.copyOfRange(a, 1, 3);   // [1,3) → {2, 3}
 | 二分查找（有序） | O(log n) |
 | 排序 | O(n log n) |
 | 插入 / 删除（需移动元素） | O(n) |
-| `System.arraycopy` | O(n) |
 
 ## 九、刷题可用
 
@@ -226,14 +206,12 @@ for (int fast = 0; fast < a.length; fast++) {
 ### 3. 前缀和（O(1) 求区间和）
 
 ```java
-// 例：a = {1, 2, 3, 4, 5}，求区间 [1,3]（下标 1~3）的和
-int[] a = {1, 2, 3, 4, 5};
-int[] pre = new int[a.length + 1];          // pre[i] = 前 i 个元素的和
+// pre[i] = a[0] + ... + a[i-1]，即前 i 个元素的和
+int[] pre = new int[a.length + 1];
 for (int i = 0; i < a.length; i++) pre[i + 1] = pre[i] + a[i];
-// pre = {0, 1, 3, 6, 10, 15}
 
-int sum = pre[3 + 1] - pre[1];              // pre[4] - pre[1] = 10 - 1 = 9
-// 区间 [1,3] 的和 = 2 + 3 + 4 = 9 ✓
+// 区间 [l, r] 的和 = pre[r+1] - pre[l]
+int sum = pre[r + 1] - pre[l];
 ```
 
 ### 4. 差分数组（区间整体加减）
@@ -241,18 +219,12 @@ int sum = pre[3 + 1] - pre[1];              // pre[4] - pre[1] = 10 - 1 = 9
 > 差分数组 `diff` 记录"相邻差值"；对区间 `[l,r]` 统一加 `val` 时，只需改 `diff[l]` 和 `diff[r+1]` 两个点，最后做一次前缀和还原。常用于"多次区间加减、最后统一查询"。
 
 ```java
-// 例：a = {1, 2, 3, 4, 5}，给区间 [1,3]（下标 1~3）整体 +2
-int[] a = {1, 2, 3, 4, 5};
-int n = a.length;
-int[] diff = new int[n + 1];                // 多开一位，方便 r+1
-for (int i = 0; i < n; i++) {               // 1. 由原数组构造差分
-    diff[i] += a[i];
-    diff[i + 1] -= a[i];
-}
-diff[1] += 2;                               // 2. 区间加：只改两个端点
-diff[4] -= 2;
-for (int i = 1; i < n; i++) diff[i] += diff[i - 1];  // 3. 前缀和还原
-// 结果 diff[0..4] = {1, 4, 5, 6, 5}
+int[] diff = new int[a.length + 1];
+diff[l] += val;        // 区间 [l, r] 整体加 val
+diff[r + 1] -= val;
+
+// 还原：对 diff 做前缀和，diff[i] 即最终 a[i] 的值
+for (int i = 1; i < diff.length; i++) diff[i] += diff[i - 1];
 ```
 
 ### 5. 矩阵顺时针旋转 90°（转置 + 每行逆序）
@@ -272,7 +244,7 @@ for (int[] row : m) {                           // 每行逆序
 
 ## 十、常见坑
 
-1. **数组定长**：不能 `add`/`remove`，需 `System.arraycopy` 或改用 `ArrayList`。
+1. **数组定长**：不能 `add`/`remove`，改用 `ArrayList`。
 2. **`Arrays.asList` 返回定长视图**：`add`/`remove` 会抛 `UnsupportedOperationException`。
 3. **`Arrays.asList(int[])` 是坑**：`int[]` 会被当成**一个元素**（得到 `List<int[]>`），正确做法是 `Arrays.stream(a).boxed()...`。
 4. **`toArray` 泛型**：`list.toArray(new Integer[0])`，别用无参 `toArray()`（返回 `Object[]`），也别写 `new int[0]`（基本类型不匹配）。
