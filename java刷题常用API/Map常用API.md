@@ -28,9 +28,9 @@ Map<String, Integer> m = Map.of("a", 1, "b", 2);
 | `merge(K k, V v, BiFunction f)`       | 合并/累加        | 合并后的新值                  |
 | `computeIfAbsent(K k, Function f)`    | 不存在才计算放入 | 已存在或刚计算的值            |
 | `computeIfPresent(K k, BiFunction f)` | 存在才更新       | 更新后的值（不存在返回 null） |
-| `replace(K k, V v)`                   | 存在才替换       | 旧值                          |
+| `replace(K k, V v)`                   | 存在才替换       | 旧值（不存在返回 null）       |
 
-> `putIfAbsent(K k, V v)`如果key存在且不为null ,放弃修改并且返回value
+> `putIfAbsent(K k, V v)`：若 key 不存在（或映射为 null）才放入新值；否则不修改，返回旧值。
 
 - **merge方法示例**
 
@@ -63,16 +63,12 @@ map.computeIfPresent("a",(k,old)->old*2); //a存在 → a=20
 map.computeIfPresent("b",(k,old)->99);     //b不存在→不执行
 ```
 
-
-
----
-
 ## 三、查
 
 | 方法                       | 说明                                   |
 | -------------------------- | -------------------------------------- |
 | `get(K k)`                 | 不存在返回 null（无法区分"存了 null"） |
-| `getOrDefault(K k, V def)` | 不存在返回默认值,常用来计数            |
+| `getOrDefault(K k, V def)` | 不存在返回默认值，常用来计数          |
 | `containsKey(K k)`         | 返回boolean,时间复杂度O(1)             |
 | `containsValue(V v)`       | 返回boolean,时间复杂度O(n)，刷题少用   |
 | `size()` / `isEmpty()`     | 常用                                   |
@@ -107,6 +103,8 @@ for (Map.Entry<Integer, Integer> e : map.entrySet()) {
 map.forEach((k, v) -> { ... });
 ```
 
+> 需要同时用 key 和 value 时，优先用 `entrySet()`（第 3 种），比 `keySet()` + `get()` 少一次查找。
+
 ## 六、刷题可用
 
 ### 1. 统计出现次数（词频）
@@ -125,7 +123,7 @@ map.put(x, map.getOrDefault(x, 0) + 1);
 ```java
 if (map.containsKey(x)) { ... }
 
-// 或利用 put 的返回值：
+// 或利用 put 的返回值（仅当 value 不会为 null 时适用）：
 if (map.put(x, i) != null) { ... }            // 原来存在时返回旧值
 ```
 
