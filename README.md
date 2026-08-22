@@ -17,7 +17,7 @@
 
 - 📦 [**数组 Array**](java刷题常用API/数组常用API.md)
 
-- 📃 **List（ArrayList / LinkedList）**
+- 📃 [**List（ArrayList / LinkedList）**](java刷题常用API/List常用API.md)
 - 🗺️ **[Map（HashMap / LinkedHashMap / TreeMap）](java刷题常用API/Map常用API.md)**
 - 🎯 **Set（HashSet / LinkedHashSet / TreeSet）**
 - 🥞 **Stack（栈）**
