@@ -28,7 +28,7 @@ Arrays.fill(f, 0, 5, 100);       // 只填 [0,5)，即下标 0~4
 
 ## 二、增 / 删（数组定长，靠拷贝移动）
 
-数组长度固定，**不能直接 add/remove**。`System.arraycopy` 5 个参数：
+数组长度固定，**不能直接 add/remove**。真要手写增删才用 `System.arraycopy`（⚠️ 刷题里很少手写，通常直接转 `ArrayList`，这里了解签名即可），5 个参数：
 
 ```
 System.arraycopy(源数组, 源起始下标, 目标数组, 目标起始下标, 拷贝个数)
@@ -226,12 +226,14 @@ for (int fast = 0; fast < a.length; fast++) {
 ### 3. 前缀和（O(1) 求区间和）
 
 ```java
-// pre[i] = a[0] + ... + a[i-1]，即前 i 个元素的和
-int[] pre = new int[a.length + 1];
+// 例：a = {1, 2, 3, 4, 5}，求区间 [1,3]（下标 1~3）的和
+int[] a = {1, 2, 3, 4, 5};
+int[] pre = new int[a.length + 1];          // pre[i] = 前 i 个元素的和
 for (int i = 0; i < a.length; i++) pre[i + 1] = pre[i] + a[i];
+// pre = {0, 1, 3, 6, 10, 15}
 
-// 区间 [l, r] 的和 = pre[r+1] - pre[l]
-int sum = pre[r + 1] - pre[l];
+int sum = pre[3 + 1] - pre[1];              // pre[4] - pre[1] = 10 - 1 = 9
+// 区间 [1,3] 的和 = 2 + 3 + 4 = 9 ✓
 ```
 
 ### 4. 差分数组（区间整体加减）
@@ -239,12 +241,18 @@ int sum = pre[r + 1] - pre[l];
 > 差分数组 `diff` 记录"相邻差值"；对区间 `[l,r]` 统一加 `val` 时，只需改 `diff[l]` 和 `diff[r+1]` 两个点，最后做一次前缀和还原。常用于"多次区间加减、最后统一查询"。
 
 ```java
-int[] diff = new int[a.length + 1];
-diff[l] += val;        // 区间 [l, r] 整体加 val
-diff[r + 1] -= val;
-
-// 还原：对 diff 做前缀和，diff[i] 即最终 a[i] 的值
-for (int i = 1; i < diff.length; i++) diff[i] += diff[i - 1];
+// 例：a = {1, 2, 3, 4, 5}，给区间 [1,3]（下标 1~3）整体 +2
+int[] a = {1, 2, 3, 4, 5};
+int n = a.length;
+int[] diff = new int[n + 1];                // 多开一位，方便 r+1
+for (int i = 0; i < n; i++) {               // 1. 由原数组构造差分
+    diff[i] += a[i];
+    diff[i + 1] -= a[i];
+}
+diff[1] += 2;                               // 2. 区间加：只改两个端点
+diff[4] -= 2;
+for (int i = 1; i < n; i++) diff[i] += diff[i - 1];  // 3. 前缀和还原
+// 结果 diff[0..4] = {1, 4, 5, 6, 5}
 ```
 
 ### 5. 矩阵顺时针旋转 90°（转置 + 每行逆序）
