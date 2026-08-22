@@ -1,6 +1,10 @@
 # 数组 Array 常用 API
 
-> 数组是刷题最常用的结构：长度固定、按下标访问 O(1)。本文覆盖创建、增删、查、改、排序、遍历、转换、复杂度、高频套路、常见坑。
+> 数组是刷题最常用的结构：长度固定、按下标访问 O(1)。
+>
+> 本文覆盖创建、增删、查、改、排序、遍历、转换、复杂度、高频套路、常见坑。
+>
+> AI生成+人工优化
 
 ## 一、创建与初始化
 
@@ -56,6 +60,25 @@ System.arraycopy(a, index, b, index + 1, a.length - index); // 复制 index 及�
 | 线性查找 | `for (int i = 0; i < a.length; i++)` | O(n) |
 | 有序数组二分查找 | `Arrays.binarySearch(a, key)` | O(log n) |
 | 求最大/最小 | 见下 | O(n) |
+
+**查数组长度（一维 / 二维 / 锯齿数组）**
+
+```java
+// 一维数组
+int[] a = {1, 2, 3};
+int aLen = a.length;      // aLen = 3
+
+// 二维数组
+int[][] b = {{1, 2, 3}, {4, 5, 6}};
+int bRow = b.length;      // bRow = 2（行数）
+int bCol = b[0].length;   // bCol = 3（第 0 行的列数）
+
+// 注意：Java 二维数组每行的列数可以不同（锯齿数组）
+int[][] c = {{1, 2, 3}, {4}};
+int cRow = c.length;      // cRow = 2
+int cCol1 = c[0].length;  // cCol1 = 3
+int cCol2 = c[1].length;  // cCol2 = 1
+```
 
 **二分查找（数组必须已有序）**
 
@@ -163,7 +186,7 @@ int[] part = Arrays.copyOfRange(a, 1, 3);   // [1,3) → {2, 3}
 | 插入 / 删除（需移动元素） | O(n) |
 | `System.arraycopy` | O(n) |
 
-## 九、刷题高频套路
+## 九、刷题可用
 
 ### 1. 二分查找（左闭右闭模板）
 
